@@ -1,4 +1,4 @@
-package org.apache.uima.defecto;
+package defecto;
 
 
 /* First created by JCasGen Tue Apr 03 22:41:57 CEST 2018 */
