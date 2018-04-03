@@ -1,11 +1,12 @@
-package org.apache.uima.annotators;
+package annotators;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.defecto.NoDetector;
 import org.apache.uima.jcas.JCas;
+
+import defecto.NoDetector;
 
 public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 
