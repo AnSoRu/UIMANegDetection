@@ -3,7 +3,7 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>  <annotatorImplementationName>annotators.NoDetectorAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>NoDetectorAnnotator</name>
+    <name>NoDetectorAnnotatorAE</name>
     <description/>
     <version>1.0</version>
     <vendor/>

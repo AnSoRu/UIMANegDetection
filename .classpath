@@ -23,5 +23,8 @@
 			<attribute name="javadoc_location" value="file:/C:/Program Files/apache-uima/docs/api"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/Descargas/PruebaDiccionarioUIMA/DictionaryAnnotator-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/commons-io-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

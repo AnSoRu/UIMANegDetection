@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary xmlns="http://incubator.apache.org/uima" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="dictionary.xsd">
+<typeCollection>
+<dictionaryMetaData caseNormalization="true" multiWordEntries="true" multiWordSeparator="|"/>
+<typeDescription>
+<typeName> ADD DICTIONARY OUTPUT TYPE HERE</typeName>
+</typeDescription>
+<entries>
+<entry>
+<key>no</key>
+</entry>
+<entry>
+<key>ni</key>
+</entry>
+<entry>
+<key>tampoco</key>
+</entry>
+<entry>
+<key>nunca</key>
+</entry>
+<entry>
+<key>en|ningún|momento</key>
+</entry>
+<entry>
+<key>sin</key>
+</entry>
+<entry>
+<key>negatividad|para</key>
+</entry>
+<entry>
+<key>ningún</key>
+</entry>
+<entry>
+<key>impedía</key>
+</entry>
+</entries>
+</typeCollection>
+</dictionary>
