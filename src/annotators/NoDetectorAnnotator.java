@@ -10,7 +10,8 @@ import defecto.NoDetector;
 
 public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 
-	private Pattern noPattern = Pattern.compile(".*(No|no).*");
+	//private Pattern noPattern = Pattern.compile("\\b(No|no).\\p{Punct}\\b");
+	private Pattern noPattern = Pattern.compile("(No|no|ni|Tampoco|tampoco|Nunca|nunca|Sin|sin|Ningún|ningún)[\\s][a-zA-Z\\s]*[^\\p{Punct}]");
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {

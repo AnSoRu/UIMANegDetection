@@ -6,7 +6,7 @@
     <vendor/>
   <types>
     <typeDescription>
-      <name>NoDetector</name>
+      <name>defecto.NoDetector</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
     </typeDescription>

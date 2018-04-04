@@ -9,7 +9,7 @@ import org.apache.uima.cas.Type;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** 
- * Updated by JCasGen Tue Apr 03 23:10:40 CEST 2018
+ * Updated by JCasGen Wed Apr 04 16:22:11 CEST 2018
  * @generated */
 public class NoDetector_Type extends Annotation_Type {
   /** @generated */
@@ -18,7 +18,7 @@ public class NoDetector_Type extends Annotation_Type {
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("NoDetector");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("defecto.NoDetector");
 
 
 

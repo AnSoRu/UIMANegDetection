@@ -1,4 +1,4 @@
-12:27:36.758 - 36: org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.callAnalysisComponentProcess(417): GRAVE: Exception occurred
+04:17:26.948 - 36: org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.callAnalysisComponentProcess(417): GRAVE: Exception occurred
 org.apache.uima.analysis_engine.AnalysisEngineProcessException: Annotator processing failed.    
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.callAnalysisComponentProcess(PrimitiveAnalysisEngine_impl.java:401)
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.processAndOutputNewCASes(PrimitiveAnalysisEngine_impl.java:308)
@@ -21,7 +21,7 @@ Caused by: org.apache.uima.cas.CASRuntimeException: JCas type "defecto.NoDetecto
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.callAnalysisComponentProcess(PrimitiveAnalysisEngine_impl.java:385)
 	... 8 more
 
-12:27:36.767 - 36: org.apache.uima.analysis_engine.impl.AggregateAnalysisEngine_impl.processAndOutputNewCASes(273): GRAVE: Exception occurred
+04:17:26.960 - 36: org.apache.uima.analysis_engine.impl.AggregateAnalysisEngine_impl.processAndOutputNewCASes(273): GRAVE: Exception occurred
 org.apache.uima.analysis_engine.AnalysisEngineProcessException: Annotator processing failed.    
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.callAnalysisComponentProcess(PrimitiveAnalysisEngine_impl.java:401)
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.processAndOutputNewCASes(PrimitiveAnalysisEngine_impl.java:308)
@@ -44,8 +44,8 @@ Caused by: org.apache.uima.cas.CASRuntimeException: JCas type "defecto.NoDetecto
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.callAnalysisComponentProcess(PrimitiveAnalysisEngine_impl.java:385)
 	... 8 more
 
-12:27:36.773 - 36: org.apache.uima.collection.impl.cpm.engine.ProcessingUnit.process: GRAVE: The container DocumentAnalyzerAE returned the following error message: Annotator processing failed.     (Thread Name: [CasConsumer Pipeline Thread]::) 
-12:27:36.774 - 36: org.apache.uima.collection.impl.cpm.engine.ProcessingUnit.maybeLogSevereException(2498): GRAVE: Thread: [CasConsumer Pipeline Thread]::, message: Annotator processing failed.    
+04:17:26.966 - 36: org.apache.uima.collection.impl.cpm.engine.ProcessingUnit.process: GRAVE: The container DocumentAnalyzerAE returned the following error message: Annotator processing failed.     (Thread Name: [CasConsumer Pipeline Thread]::) 
+04:17:26.967 - 36: org.apache.uima.collection.impl.cpm.engine.ProcessingUnit.maybeLogSevereException(2498): GRAVE: Thread: [CasConsumer Pipeline Thread]::, message: Annotator processing failed.    
 org.apache.uima.analysis_engine.AnalysisEngineProcessException: Annotator processing failed.    
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.callAnalysisComponentProcess(PrimitiveAnalysisEngine_impl.java:401)
 	at org.apache.uima.analysis_engine.impl.PrimitiveAnalysisEngine_impl.processAndOutputNewCASes(PrimitiveAnalysisEngine_impl.java:308)
