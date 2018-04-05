@@ -31,5 +31,30 @@
       <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
   </analysisEngineMetaData>
-  <resourceManagerConfiguration/>
+  <externalResourceDependencies>
+    <externalResourceDependency>
+      <key>Dictionary</key>
+      <description/>
+      <interfaceName>annotators.StringMapResource</interfaceName>
+      <optional>false</optional>
+    </externalResourceDependency>
+  </externalResourceDependencies>
+  <resourceManagerConfiguration>
+    <externalResources>
+      <externalResource>
+        <name>Dictionary</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:entries.txt</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>annotators.StringMapResource_impl</implementationName>
+      </externalResource>
+    </externalResources>
+    <externalResourceBindings>
+      <externalResourceBinding>
+        <key>Dictionary</key>
+        <resourceName>Dictionary</resourceName>
+      </externalResourceBinding>
+    </externalResourceBindings>
+  </resourceManagerConfiguration>
 </analysisEngineDescription>
