@@ -1,5 +1,4 @@
 package annotators;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -100,7 +99,6 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 					//annotation.setEnd(pos + token.length());
 					annotation.setEnd(fin);
 					annotation.addToIndexes();
-					//break;
 				}
 			}
 			posAux = posAux + anterior.length();
