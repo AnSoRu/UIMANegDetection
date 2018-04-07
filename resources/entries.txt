@@ -1,9 +1,164 @@
-no
-ni
-tampoco
-nunca
-en ningÃºn momento
-sin
+Ausente
+Ausencia de
+Desapareció
+Descartando
+Descensos
+Dudar
+Disminuido
+En ningún momento
+Está descartado
+Excluído
+Excluir
+Falta de
+Faltos de
+Fue negativo
+Fueron negativos
+Ha sido descartado
+Impedía
+Improbable
+Libre de
+Libre
+Nada
+Negativa
+Negatividad para
+Negativo para
+Negó
+Niega
+Ningún
+Ninguna indicación de
+Ninguna sospecha de
+Ni
+No
+Nunca desarrollado
+Nunca tuvo
+Nunca
+Paciente no estaba
+Para excluir
+Poca evidencia
+Poco indica
+Rechazar
+Rechazado
+Rechazando
+Resultaron negativas
+Resultaron negativos
+Se descarta
+Se descartan
+Se descartó
+Se negó
+Se negó a realizar
+Se podían descartar
+Se puede descartar
+Siendo descartado
+Sin aumento
+Sin cambio de intervalo
+Sin cambio significativo
+Sin cambios
+Sin cambios significativos
+Sin cambios sospechosos
+Sin causa
+Sin causa de
+Sin dificultades
+Sin drenaje
+Sin evidencia
+Sin evidencia mamográfica
+Sin evidencia para sugerir
+Sin evidencia radiográfica de
+Sin evidencias
+Sin evidencias para sugerir
+Sin extensión
+Sin indicaciones de
+Sin nada especial para
+Sin ninguna evidencia alguna de
+Sin novedad
+Sin nueva evidencia
+Sin otra evidencia
+Sin queja de
+Sin resultados de
+Sin resultados que indiquen
+Sin signos
+Sin signos de
+Suficiente para descartar
+Suspendiendo
+Tampoco
+ausente
+ausencia de
+desapareció
+descartando
+descensos
+dudar
+disminuido
+en ningún momento
+está descartado
+excluído
+excluir
+falta de
+faltos de
+fue negativo
+fueron negativos
+ha sido descartado
+impedía
+improbable
+libre de
+libre
+nada
+negativa
 negatividad para
-ningÃºn
-impedÃ­a
+negativo para
+negó
+ninguna sospecha de
+ninguna indicación de
+ningún
+niega
+ni
+no
+nunca tuvo
+nunca desarrollado
+nunca
+paciente no estaba
+para excluir
+poca evidencia
+poco indica
+rechazar
+rechazado
+rechazando
+resultaron negativas
+resultaron negativos
+se descarta
+se descartan
+se descartó
+se negó
+se negó a realizar
+se podían descartar
+se puede descartar
+siendo descartado
+sin aumento
+sin cambio de intervalo
+sin cambio significativo
+sin cambios
+sin cambios significativos
+sin cambios sospechosos
+sin causa
+sin causa de
+sin dificultades
+sin drenaje
+sin evidencia
+sin evidencia mamográfica
+sin evidencia para sugerir
+sin evidencia radiográfica de
+sin evidencias
+sin evidencias para sugerir
+sin extensión
+sin indicaciones de
+sin nada especial para
+sin ninguna evidencia alguna de
+sin novedad
+sin nueva evidencia
+sin otra evidencia
+sin queja de
+sin resultados de
+sin resultados que indiquen
+sin signos
+sin signos de
+suficiente para descartar
+suspendiendo
+tampoco

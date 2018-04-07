@@ -44,4 +44,8 @@ public class StringMapResource_impl implements StringMapResource,SharedResourceO
 		return (String)mMap.get(aKey);
 	}
 	
+	public Map<String,String> getMap(){
+		return this.mMap;
+	}
+	
 }
