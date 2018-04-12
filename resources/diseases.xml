@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary xmlns="http://incubator.apache.org/uima" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="dictionary.xsd">
+<typeCollection>
+<dictionaryMetaData caseNormalization="true" multiWordEntries="true" multiWordSeparator="|"/>
+<typeDescription>
+<typeName> ADD DICTIONARY OUTPUT TYPE HERE</typeName>
+</typeDescription>
+<entries>
+<entry>
+<key>Astigmatismo</key>
+</entry>
+<entry>
+<key>Cancer</key>
+</entry>
+<entry>
+<key>astigmatismo</key>
+</entry>
+<entry>
+<key>cancer</key>
+</entry>
+</entries>
+</typeCollection>
+</dictionary>

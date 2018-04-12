@@ -1,7 +1,7 @@
+
+
+/* First created by JCasGen Thu Apr 12 18:47:07 CEST 2018 */
 package defecto;
-
-
-/* First created by JCasGen Tue Apr 03 22:41:57 CEST 2018 */
 
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
@@ -14,12 +14,12 @@ import org.apache.uima.jcas.tcas.Annotation;
  * Updated by JCasGen Thu Apr 12 19:27:48 CEST 2018
  * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/NoDiseaseAnnotator.xml
  * @generated */
-public class NoDetector extends Annotation {
+public class NoDisease extends Annotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(NoDetector.class);
+  public final static int typeIndexID = JCasRegistry.register(NoDisease.class);
   /** @generated
    * @ordered 
    */
@@ -33,14 +33,14 @@ public class NoDetector extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected NoDetector() {/* intentionally empty block */}
+  protected NoDisease() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public NoDetector(int addr, TOP_Type type) {
+  public NoDisease(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -48,7 +48,7 @@ public class NoDetector extends Annotation {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public NoDetector(JCas jcas) {
+  public NoDisease(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -58,7 +58,7 @@ public class NoDetector extends Annotation {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public NoDetector(JCas jcas, int begin, int end) {
+  public NoDisease(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);

@@ -1,6 +1,6 @@
-package defecto;
 
-/* First created by JCasGen Tue Apr 03 22:41:57 CEST 2018 */
+/* First created by JCasGen Thu Apr 12 18:47:07 CEST 2018 */
+package defecto;
 
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;
@@ -11,14 +11,14 @@ import org.apache.uima.jcas.tcas.Annotation_Type;
 /** 
  * Updated by JCasGen Thu Apr 12 19:27:48 CEST 2018
  * @generated */
-public class NoDetector_Type extends Annotation_Type {
+public class NoDisease_Type extends Annotation_Type {
   /** @generated */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = NoDetector.typeIndexID;
+  public final static int typeIndexID = NoDisease.typeIndexID;
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("defecto.NoDetector");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("defecto.NoDisease");
 
 
 
@@ -27,7 +27,7 @@ public class NoDetector_Type extends Annotation_Type {
 	 * @param jcas JCas
 	 * @param casType Type 
 	 */
-  public NoDetector_Type(JCas jcas, Type casType) {
+  public NoDisease_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 
