@@ -19,6 +19,7 @@ Improbable
 Libre de
 Libre
 Nada
+Negativo
 Negativa
 Negatividad para
 Negativo para
@@ -101,6 +102,7 @@ improbable
 libre de
 libre
 nada
+negativo
 negativa
 negatividad para
 negativo para
