@@ -25,7 +25,7 @@ public class NoDiseaseAnnotator extends JCasAnnotator_ImplBase {
 		super.initialize(aContext);
 		try {
 			mMap = (StringMapResource_impl)getContext().getResourceObject("Diseases");
-			mapAux = mMap.getMap();
+			//mapAux = mMap.getMap();
 		} catch (ResourceAccessException e) {
 			e.printStackTrace();
 		}

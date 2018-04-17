@@ -1,4 +1,5 @@
 package annotators;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -28,7 +29,8 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 	
 	//Map
 	private StringMapResource_impl mMap;
-	private Map<String,String> mapAux;
+	//private Map<String,String> mapAux;
+	private List<String> listaPalabras;
 	private String anterior;
 	
 	@Override
@@ -41,7 +43,8 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 				patternSet.add(Pattern.compile(patternString));
 			}*/
 			mMap = (StringMapResource_impl)getContext().getResourceObject("Dictionary");
-			mapAux = mMap.getMap();
+			//mapAux = mMap.getMap();
+			listaPalabras = mMap.getLista();
 			anterior = "";
 		} catch (ResourceAccessException e) {
 			e.printStackTrace();
@@ -72,9 +75,10 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 			}
 		}*/
 		int posAux = 0;
-		StringTokenizer tokenizer = new StringTokenizer(docText,"\t\n\r.<.>/?\";:[{]}\\|=+()!", true);
+		StringTokenizer tokenizer = new StringTokenizer(docText,"\t\n\r.<.>/?\";:[{]}\\|=+()!", false);
 		while(tokenizer.hasMoreTokens()) {
 			String token = tokenizer.nextToken();
+			System.out.println("##############################");
 			System.out.println("El token es ");
 			System.out.println(token);
 			
@@ -84,8 +88,8 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 			System.out.println("El anterior con trim es -> " + anterior.trim());
 			//Buscar en el map para ver si es una palabra de negación
 			//Negacion es siempre un string vacio es solo para saber si es != null
-			Set<String> it = mapAux.keySet();
-			for(String sAux : it) {
+			//Set<String> it = mapAux.keySet();
+			for(String sAux : listaPalabras) {
 				System.out.println("Evaluando si contiene " + sAux);
 				if(isContained(anterior,sAux)) {
 				//if(anterior.contains(sAux)) {

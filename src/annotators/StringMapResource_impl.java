@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.uima.resource.DataResource;
@@ -13,8 +15,8 @@ import org.apache.uima.resource.SharedResourceObject;
 
 public class StringMapResource_impl implements StringMapResource,SharedResourceObject {
 	
-	private Map<String,String> mMap = new HashMap<>();
-
+	//private Map<String,String> mMap = new HashMap<>();
+	private List<String> listaPalabras = new ArrayList<String>();
 	@Override
 	public void load(DataResource data) throws ResourceInitializationException {
 		InputStream inputStream = null;
@@ -23,8 +25,11 @@ public class StringMapResource_impl implements StringMapResource,SharedResourceO
 			//leer las líneas
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 			String line;
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			while ((line = reader.readLine()) != null) {
-				mMap.put(line,"");
+				System.out.println("Introduciendo " + line);
+				//mMap.put(line,"");
+				listaPalabras.add(line);
 			}
 		} catch (IOException e) {
 			throw new ResourceInitializationException(e);
@@ -38,14 +43,19 @@ public class StringMapResource_impl implements StringMapResource,SharedResourceO
 			}
 		}
 	}
+	
+	public List<String> getLista(){
+		return this.listaPalabras;
+	}
 
 	@Override
 	public String get(String aKey) {
-		return (String)mMap.get(aKey);
+		//return (String)mMap.get(aKey);
+		return "";
 	}
 	
-	public Map<String,String> getMap(){
+	/*public Map<String,String> getMap(){
 		return this.mMap;
-	}
+	}*/
 	
 }
