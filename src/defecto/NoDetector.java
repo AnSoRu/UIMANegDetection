@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu Apr 12 19:27:48 CEST 2018
- * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/NoDiseaseAnnotator.xml
+ * Updated by JCasGen Mon Apr 16 21:29:41 CEST 2018
+ * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/NegatedSentenceDescriptor.xml
  * @generated */
 public class NoDetector extends Annotation {
   /** @generated

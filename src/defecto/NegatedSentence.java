@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Mon Apr 16 20:51:51 CEST 2018
- * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/NegatedSentence.xml
+ * Updated by JCasGen Mon Apr 16 21:29:41 CEST 2018
+ * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/NegatedSentenceDescriptor.xml
  * @generated */
 public class NegatedSentence extends Annotation {
   /** @generated
