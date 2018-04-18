@@ -1,7 +1,13 @@
 package annotators;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.BreakIterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,15 +30,23 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 
 	//Fijarse en esta direccion
 	//http://sujitpal.blogspot.com.es/2011/06/uima-analysis-engine-for-keyword.html
-	
+
 	//private Set<Pattern> patternSet;
-	
+
 	//Map
 	private StringMapResource_impl mMap;
 	//private Map<String,String> mapAux;
 	private List<String> listaPalabras;
 	private String anterior;
-	
+	static String[] SENTENCE;
+
+	//ParsePosition pp = new ParsePosition(0);
+
+	// ****************************************
+	// * Static vars holding break iterators
+	// ****************************************
+	static final BreakIterator sentenceBreak = BreakIterator.getSentenceInstance(Locale.US);
+
 	@Override
 	public void initialize(UimaContext aContext) throws ResourceInitializationException {
 		super.initialize(aContext);
@@ -54,36 +68,52 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
-		/*String docText = jCas.getDocumentText();
-		Matcher matcher = noPattern.matcher(docText);
-		while(matcher.find()) {
-			NoDetector noAnnotation = new NoDetector(jCas);
-			noAnnotation.setBegin(matcher.start());
-			noAnnotation.setEnd(matcher.end());
-			noAnnotation.addToIndexes();
-		}*/
+
 		String docText = jCas.getDocumentText();
-		/*for(Pattern pattern : patternSet) {
-			Matcher matcher = pattern.matcher(docText);
-			int pos = 0;
-			while(matcher.find(pos)) {
-				pos = matcher.end();
-				NoDetector annotation = new NoDetector(jCas);
-				annotation.setBegin(matcher.start());
-				annotation.setEnd(pos);
-				annotation.addToIndexes();				
+		System.out.println("################################");
+		System.out.println("El texto es ");
+		System.out.println(docText);
+
+		try {
+			File temp = File.createTempFile("tempfile",".txt");
+			FileOutputStream fio = new FileOutputStream(temp);
+			fio.write(docText.getBytes());
+			fio.close();
+			Scanner sentence = new Scanner(temp);
+			ArrayList<String> sentenceList = new ArrayList<String>();
+			while(sentence.hasNextLine()) {
+				sentenceList.add(sentence.nextLine());
 			}
-		}*/
+			sentence.close();
+
+			String[] sentenceArray = sentenceList.toArray(new String[sentenceList.size()]);
+
+			for (int r=0;r<sentenceArray.length;r++)
+			{
+				SENTENCE = sentenceArray[r].split("(?<=[.!?])\\s*");
+				for (int i=0;i<SENTENCE.length;i++)
+				{
+					System.out.println("Sentence " + (i+1) + ": " + SENTENCE[i]);
+				}
+			}
+
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 		int posAux = 0;
-		StringTokenizer tokenizer = new StringTokenizer(docText,"\t\n\r.<.>/?\";:[{]}\\|=+()!", false);
+		//StringTokenizer tokenizer = new StringTokenizer(docText,"\t\r\n.<>/?\";:[{]}\\|=+()!", false);
+		//StringTokenizer tokenizer = new StringTokenizer(docText,"(?<=[.!?])\\s*", false);
+		StringTokenizer tokenizer = new StringTokenizer(docText,".", false);
 		while(tokenizer.hasMoreTokens()) {
 			String token = tokenizer.nextToken();
 			System.out.println("##############################");
 			System.out.println("El token es ");
 			System.out.println(token);
-			
+			System.out.println("La longitud es " + token.length());
+
 			anterior = anterior + token;
-			
+
 			System.out.println("El anterior es -> " + anterior);
 			System.out.println("El anterior con trim es -> " + anterior.trim());
 			//Buscar en el map para ver si es una palabra de negación
@@ -92,7 +122,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 			for(String sAux : listaPalabras) {
 				System.out.println("Evaluando si contiene " + sAux);
 				if(isContained(anterior,sAux)) {
-				//if(anterior.contains(sAux)) {
+					//if(anterior.contains(sAux)) {
 					System.out.println("La oracion contiene " + sAux);
 					System.out.println("Comienza en : " + anterior.indexOf(sAux));
 					posAux = anterior.indexOf(sAux);
@@ -100,7 +130,6 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 					int fin = inicio + sAux.length();
 					NoDetector annotation = new NoDetector(jCas);
 					annotation.setBegin(inicio);
-					//annotation.setEnd(pos + token.length());
 					annotation.setEnd(fin);
 					annotation.addToIndexes();
 				}
@@ -109,7 +138,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 			//anterior = "";
 		}
 	}
-	
+
 	private static boolean isContained(String source, String subItem) {
 		String pattern = "\\b" + subItem + "\\b";
 		Pattern p = Pattern.compile(pattern);
