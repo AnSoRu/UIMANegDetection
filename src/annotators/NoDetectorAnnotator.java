@@ -39,6 +39,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 	private List<String> listaPalabras;
 	private String anterior;
 	static String[] SENTENCE;
+	private List<String> oraciones;
 
 	//ParsePosition pp = new ParsePosition(0);
 
@@ -59,6 +60,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 			mMap = (StringMapResource_impl)getContext().getResourceObject("Dictionary");
 			//mapAux = mMap.getMap();
 			listaPalabras = mMap.getLista();
+			oraciones = new ArrayList<String>();
 			anterior = "";
 		} catch (ResourceAccessException e) {
 			e.printStackTrace();
@@ -90,13 +92,15 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 
 			for (int r=0;r<sentenceArray.length;r++)
 			{
+				System.out.println("R vale = " + r);
+				System.out.println(sentenceArray[r]);
 				SENTENCE = sentenceArray[r].split("(?<=[.!?])\\s*");
 				for (int i=0;i<SENTENCE.length;i++)
 				{
 					System.out.println("Sentence " + (i+1) + ": " + SENTENCE[i]);
+					oraciones.add(SENTENCE[i]);
 				}
 			}
-
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -104,9 +108,13 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 		int posAux = 0;
 		//StringTokenizer tokenizer = new StringTokenizer(docText,"\t\r\n.<>/?\";:[{]}\\|=+()!", false);
 		//StringTokenizer tokenizer = new StringTokenizer(docText,"(?<=[.!?])\\s*", false);
-		StringTokenizer tokenizer = new StringTokenizer(docText,".", false);
-		while(tokenizer.hasMoreTokens()) {
-			String token = tokenizer.nextToken();
+		//StringTokenizer tokenizer = new StringTokenizer(docText,".", false);
+		System.out.println("############################");
+		System.out.println("Comenzando bucle while");
+		int i = 0;
+		while(i < oraciones.size()) {
+			//String token = tokenizer.nextToken();
+			String token = oraciones.get(i);
 			System.out.println("##############################");
 			System.out.println("El token es ");
 			System.out.println(token);
@@ -135,6 +143,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 				}
 			}
 			posAux = posAux + anterior.length();
+			i++;
 			//anterior = "";
 		}
 	}
