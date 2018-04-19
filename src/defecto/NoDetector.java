@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Tue Apr 17 17:33:11 CEST 2018
- * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/NegatedSentenceTAE.xml
+ * Updated by JCasGen Thu Apr 19 17:59:26 CEST 2018
+ * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/SimpleNoRecognizer.xml
  * @generated */
 public class NoDetector extends Annotation {
   /** @generated
@@ -74,6 +74,26 @@ public class NoDetector extends Annotation {
    */
   private void readObject() {/*default - does nothing empty block */}
      
-}
+  //*--------------*
+  //* Feature: idOracion
+
+  /** getter for idOracion - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public int getIdOracion() {
+    if (NoDetector_Type.featOkTst && ((NoDetector_Type)jcasType).casFeat_idOracion == null)
+      jcasType.jcas.throwFeatMissing("idOracion", "defecto.NoDetector");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((NoDetector_Type)jcasType).casFeatCode_idOracion);}
+    
+  /** setter for idOracion - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setIdOracion(int v) {
+    if (NoDetector_Type.featOkTst && ((NoDetector_Type)jcasType).casFeat_idOracion == null)
+      jcasType.jcas.throwFeatMissing("idOracion", "defecto.NoDetector");
+    jcasType.ll_cas.ll_setIntValue(addr, ((NoDetector_Type)jcasType).casFeatCode_idOracion, v);}    
+  }
 
     
