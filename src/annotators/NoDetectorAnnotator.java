@@ -1,15 +1,8 @@
 package annotators;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,9 +11,9 @@ import org.apache.commons.io.Charsets;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.cas.FSIndex;
-import org.apache.uima.internal.util.SymbolTable;
+import org.apache.uima.cas.text.AnnotationIndex;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceAccessException;
 import org.apache.uima.resource.ResourceInitializationException;
 
@@ -44,11 +37,9 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 	private StringMapResource_impl mMap;
 	//private Map<String,String> mapAux;
 	private List<String> listaPalabras;
-	private String anterior;
 	static String[] SENTENCE;
 	private List<Oracion> oraciones;
 	private List<Integer> longitudOraciones; //Longitud acumulada
-	private int idOracion;
 	private OneSentenceText oST;
 
 	//ParsePosition pp = new ParsePosition(0);
@@ -72,14 +63,13 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 			listaPalabras = mMap.getLista();
 			oraciones = new ArrayList<Oracion>();
 			longitudOraciones = new ArrayList<Integer>();
-			idOracion = 0;
-			anterior = "";
 			oST = new OneSentenceText();
 		} catch (ResourceAccessException e) {
 			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
 
@@ -156,9 +146,6 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 						int idOracion = oAux.getId();
 						int inicio = 0;
 						int fin = 0;
-						int j = 0;
-
-
 						inicio = token.indexOf(sAux);
 						fin = inicio + sAux.length();
 						longitudOraciones.add(idOracion,token.length());
@@ -185,7 +172,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 
 						///////////////////////////////////////////////////
 						//Obtenemos los índices de las anotaciones producidas por el "NoDetectorAnnotator"
-						FSIndex noIndex = jCas.getAnnotationIndex(NoDetector.type);
+						AnnotationIndex<Annotation> noIndex = jCas.getAnnotationIndex(NoDetector.type);
 						if(noIndex.size()>0) {
 							//System.out.println("#######################");
 							//System.out.println("Hay cosas");

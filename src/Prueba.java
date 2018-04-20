@@ -5,12 +5,11 @@ import java.io.IOException;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.analysis_engine.TextAnalysisEngine;
-import org.apache.uima.cas.FSIndex;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.cas.FeatureStructure;
 import org.apache.uima.cas.Type;
-import org.apache.uima.collection.metadata.CpeDescription;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceSpecifier;
 import org.apache.uima.util.InvalidXMLException;
@@ -18,6 +17,7 @@ import org.apache.uima.util.XMLInputSource;
 
 import defecto.NoDetector;
 
+@SuppressWarnings("deprecation")
 public class Prueba {
 	
 	public static void printAnnotations(JCas jcas) {
@@ -25,7 +25,7 @@ public class Prueba {
 		System.out.println("El tipo es " + tipo.getName());
 		System.out.println("Tiene " + tipo.getNumberOfFeatures() + " propiedades");
 		
-		FSIterator iter = jcas.getAnnotationIndex(tipo).iterator();
+		FSIterator<Annotation> iter = jcas.getAnnotationIndex(tipo).iterator();
 		while(iter.isValid()) {
 			FeatureStructure fs = iter.get();
 			NoDetector annot = (NoDetector)fs;
