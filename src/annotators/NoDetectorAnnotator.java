@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +14,17 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.Charsets;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIndex;
+import org.apache.uima.internal.util.SymbolTable;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceAccessException;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import auxiliar.OneSentenceText;
 import auxiliar.Oracion;
 import defecto.NoDetector;
 
@@ -44,6 +49,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 	private List<Oracion> oraciones;
 	private List<Integer> longitudOraciones; //Longitud acumulada
 	private int idOracion;
+	private OneSentenceText oST;
 
 	//ParsePosition pp = new ParsePosition(0);
 
@@ -68,134 +74,143 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 			longitudOraciones = new ArrayList<Integer>();
 			idOracion = 0;
 			anterior = "";
+			oST = new OneSentenceText();
 		} catch (ResourceAccessException e) {
 			e.printStackTrace();
 		}
 	}
 
-
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
 
-		String docText = jCas.getDocumentText();
+		byte[] docText = null;
+		docText = jCas.getDocumentText().getBytes();
+		String docTextAux = null;
+		docTextAux = new String(docText,Charsets.UTF_8);
 		System.out.println("################################");
 		System.out.println("El texto es ");
 		System.out.println(docText);
-
 		try {
-			File temp = File.createTempFile("tempfile",".txt");
+			//Se eliminan los saltos de línea retornos de carro y tabuladores
+
+			/*File temp = File.createTempFile("tempfile",".txt");
 			FileOutputStream fio = new FileOutputStream(temp);
 			fio.write(docText.getBytes());
-			fio.close();
-			Scanner sentence = new Scanner(temp);
-			ArrayList<String> sentenceList = new ArrayList<String>();
-			while(sentence.hasNextLine()) {
-				sentenceList.add(sentence.nextLine());
+			fio.close();*/
+
+			//Este es el texto sobre el que voy a realizar anotaciones
+			//No me importa la parte visual
+
+			String oneSentence = oST.toOneSentenceText(docTextAux); 
+			System.out.println("??????????????????????????????????");
+			System.out.println("La transformada es ");
+			System.out.println(oneSentence);
+			//En la aplicación de visualización a partir de ahora no van a coincidir la anotación justo encima del texto correspondiente
+			//pues estoy transformando el texto de entrada para que sea más rápida la búsqueda, quitando los retornos de carro y saltos de línea.
+			//Puesto que estoy dependiendo al 100% de la posición de los caracteres en el texto para poder anotar, transformo todo el texto
+			//en una sola línea
+			//En definitiva el texto sobre el que anoto no contiene ni retornos de carro 
+			//No es el objetivo de este proyecto que visualmente se vea la anotación.
+
+			int posAux = 0;
+			//StringTokenizer tokenizer = new StringTokenizer(docText,"\t\r\n.<>/?\";:[{]}\\|=+()!", false);
+			//StringTokenizer tokenizer = new StringTokenizer(docText,"(?<=[.!?])\\s*", false);
+			//StringTokenizer tokenizer = new StringTokenizer(docText,".", false);
+			StringTokenizer tokenizer = new StringTokenizer(oneSentence,".",false);
+			int idOracionAux = 0;
+			while(tokenizer.hasMoreTokens()) {
+				System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIII");
+				String oracionAux = tokenizer.nextToken();
+				System.out.println("SE HA ENCONTRADO LA ORACIÓN " + oracionAux);
+				int inicioOracion = oneSentence.indexOf(oracionAux);
+				int finOracion = inicioOracion + oracionAux.length();
+				System.out.println("Comienza en " + inicioOracion);
+				System.out.println("Termina en " + finOracion);
+				Oracion oAux = new Oracion(idOracionAux, oracionAux,inicioOracion,finOracion);
+				oraciones.add(oAux);
+				idOracionAux++;
 			}
-			sentence.close();
+			System.out.println("############################");
+			System.out.println("Comenzando bucle while");
+			int i = 0;
+			while(i < oraciones.size()) {
+				//String token = tokenizer.nextToken();
+				Oracion oAux = oraciones.get(i);
+				String token = oAux.getOracion();
+				System.out.println("##############################");
+				System.out.println("El token es ");
+				System.out.println(token);
+				System.out.println("La longitud es " + token.length());
 
-			String[] sentenceArray = sentenceList.toArray(new String[sentenceList.size()]);
+				//anterior = anterior + token;
 
-			for (int r=0;r<sentenceArray.length;r++)
-			{
-				System.out.println("R vale = " + r);
-				System.out.println(sentenceArray[r]);
-				SENTENCE = sentenceArray[r].split("(?<=[.!?])\\s*");
-				for (int i=0;i<SENTENCE.length;i++)
-				{
-					System.out.println("Sentence " + (i+1) + ": " + SENTENCE[i]);
-					oraciones.add(new Oracion(SENTENCE[i],idOracion));
-					idOracion ++;
-					longitudOraciones.add(SENTENCE[i].length());
-				}
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+				//System.out.println("El anterior es -> " + anterior);
+				//System.out.println("El anterior con trim es -> " + anterior.trim());
+				//Buscar en el map para ver si es una palabra de negación
+				//Negacion es siempre un string vacio es solo para saber si es != null
+				//Set<String> it = mapAux.keySet();
+				for(String sAux : listaPalabras) {
+					System.out.println("Evaluando si contiene " + sAux);
+					if(isContained(token,sAux)) {
 
-		int posAux = 0;
-		//StringTokenizer tokenizer = new StringTokenizer(docText,"\t\r\n.<>/?\";:[{]}\\|=+()!", false);
-		//StringTokenizer tokenizer = new StringTokenizer(docText,"(?<=[.!?])\\s*", false);
-		//StringTokenizer tokenizer = new StringTokenizer(docText,".", false);
-		System.out.println("############################");
-		System.out.println("Comenzando bucle while");
-		int i = 0;
-		while(i < oraciones.size()) {
-			//String token = tokenizer.nextToken();
-			Oracion oAux = oraciones.get(i);
-			String token = oAux.getOracion();
-			System.out.println("##############################");
-			System.out.println("El token es ");
-			System.out.println(token);
-			System.out.println("La longitud es " + token.length());
+						int idOracion = oAux.getId();
+						int inicio = 0;
+						int fin = 0;
+						int j = 0;
 
-			//anterior = anterior + token;
 
-			//System.out.println("El anterior es -> " + anterior);
-			//System.out.println("El anterior con trim es -> " + anterior.trim());
-			//Buscar en el map para ver si es una palabra de negación
-			//Negacion es siempre un string vacio es solo para saber si es != null
-			//Set<String> it = mapAux.keySet();
-			for(String sAux : listaPalabras) {
-				System.out.println("Evaluando si contiene " + sAux);
-				if(isContained(token,sAux)) {
-					
-		            int idOracion = oAux.getId();
-		            int inicio = 0;
-		            int fin = 0;
-		            int j = 0;
-		            if(idOracion > 0) {
-		            	int longitudTotal = 0;
-		            	while(j < idOracion) {
-		            		longitudTotal = longitudTotal + longitudOraciones.get(j);
-		            		j++;
-		            	}
-		            	inicio = token.indexOf(sAux) + longitudTotal;
-		            	fin = inicio + sAux.length();
-		            	longitudOraciones.add(idOracion,token.length());
-		            }else {
-		            	inicio = token.indexOf(sAux);
-		            	fin = inicio + sAux.length();
-		            	longitudOraciones.add(idOracion, token.length());
-		            }
-					//if(anterior.contains(sAux)) {
-					System.out.println("La oracion contiene " + sAux);
-					System.out.println("Comienza en : " + inicio);
-					///
-					posAux = token.indexOf(sAux);
-				    //inicio = token.indexOf(sAux);
-					//fin = inicio + sAux.length();
-					///
-					
-					NoDetector annotation = new NoDetector(jCas);
-					annotation.setBegin(inicio);
-					annotation.setEnd(fin);
-					annotation.setIdOracion(idOracion);
-					///////////////////////////////////////////////////
-					//Obtenemos los índices de las anotaciones producidas por el "NoDetectorAnnotator"
-					FSIndex noIndex = jCas.getAnnotationIndex(NoDetector.type);
-					if(noIndex.size()>0) {
-						//System.out.println("#######################");
-						//System.out.println("Hay cosas");
-						if(noIndex.find(annotation)==null) {
-							System.out.println("No existe aún la anotación");
+						inicio = token.indexOf(sAux);
+						fin = inicio + sAux.length();
+						longitudOraciones.add(idOracion,token.length());
+
+
+
+						//if(anterior.contains(sAux)) {
+						System.out.println("La oracion contiene " + sAux);
+						System.out.println("Comienza en : " + inicio);
+						///
+						posAux = token.indexOf(sAux);
+						//inicio = token.indexOf(sAux);
+						//fin = inicio + sAux.length();
+						///
+
+						NoDetector annotation = new NoDetector(jCas);
+						annotation.setBegin(inicio);
+						annotation.setEnd(fin);
+						annotation.setIdOracion(idOracion);
+
+						System.out.println("Se ha creado una anotación en la oración " + idOracion);
+						System.out.println("La anotacion comienza en " + inicio);
+						System.out.println("La anotación termina en " + fin);
+
+						///////////////////////////////////////////////////
+						//Obtenemos los índices de las anotaciones producidas por el "NoDetectorAnnotator"
+						FSIndex noIndex = jCas.getAnnotationIndex(NoDetector.type);
+						if(noIndex.size()>0) {
+							//System.out.println("#######################");
+							//System.out.println("Hay cosas");
+							if(noIndex.find(annotation)==null) {
+								System.out.println("No existe aún la anotación");
+								annotation.addToIndexes();
+								//////////////////////////////////////////////////
+								System.out.println("////////////////////////////");
+								System.out.println("ANOTADA 1 VEZ");
+							}
+						}else {
+							//System.out.println("No hay na de na");
 							annotation.addToIndexes();
 							//////////////////////////////////////////////////
 							System.out.println("////////////////////////////");
 							System.out.println("ANOTADA 1 VEZ");
 						}
-					}else {
-						//System.out.println("No hay na de na");
-						annotation.addToIndexes();
-						//////////////////////////////////////////////////
-						System.out.println("////////////////////////////");
-						System.out.println("ANOTADA 1 VEZ");
 					}
 				}
+				posAux = posAux + token.length();
+				i++;
+				//anterior = "";
 			}
-			posAux = posAux + token.length();
-			i++;
-			//anterior = "";
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
