@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu Apr 19 17:59:26 CEST 2018
+ * Updated by JCasGen Mon Apr 23 18:01:36 CEST 2018
  * XML source: D:/EclipseWorkspace/UIMANegDetection/desc/SimpleNoRecognizer.xml
  * @generated */
 public class NoDetector extends Annotation {
@@ -94,6 +94,28 @@ public class NoDetector extends Annotation {
     if (NoDetector_Type.featOkTst && ((NoDetector_Type)jcasType).casFeat_idOracion == null)
       jcasType.jcas.throwFeatMissing("idOracion", "defecto.NoDetector");
     jcasType.ll_cas.ll_setIntValue(addr, ((NoDetector_Type)jcasType).casFeatCode_idOracion, v);}    
+   
+    
+  //*--------------*
+  //* Feature: oracionString
+
+  /** getter for oracionString - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getOracionString() {
+    if (NoDetector_Type.featOkTst && ((NoDetector_Type)jcasType).casFeat_oracionString == null)
+      jcasType.jcas.throwFeatMissing("oracionString", "defecto.NoDetector");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((NoDetector_Type)jcasType).casFeatCode_oracionString);}
+    
+  /** setter for oracionString - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setOracionString(String v) {
+    if (NoDetector_Type.featOkTst && ((NoDetector_Type)jcasType).casFeat_oracionString == null)
+      jcasType.jcas.throwFeatMissing("oracionString", "defecto.NoDetector");
+    jcasType.ll_cas.ll_setStringValue(addr, ((NoDetector_Type)jcasType).casFeatCode_oracionString, v);}    
   }
 
     

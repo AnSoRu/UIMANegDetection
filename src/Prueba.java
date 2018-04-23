@@ -29,7 +29,9 @@ public class Prueba {
 		while(iter.isValid()) {
 			FeatureStructure fs = iter.get();
 			NoDetector annot = (NoDetector)fs;
-			System.out.println("Comienzo de anotación " + annot.getBegin() + " hasta " + annot.getEnd());
+			//System.out.println("Anotación (Covered Text) > " + annot.getCoveredText());
+			System.out.println("Comienzo de anotación " + annot.getBegin() + " hasta " + annot.getEnd() + " de la oración " + annot.getOracionString() + " con id " + annot.getIdOracion());
+			System.out.println();
 			iter.moveToNext();
 		}
 	}

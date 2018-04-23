@@ -20,6 +20,7 @@ public class SharedSetResource implements SharedResourceObject {
 	private final Set<String> configs = new HashSet<String>();
 	
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void load(DataResource res) throws ResourceInitializationException {
 		InputStream istream = null;

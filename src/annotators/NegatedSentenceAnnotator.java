@@ -32,7 +32,7 @@ public class NegatedSentenceAnnotator extends JCasAnnotator_ImplBase {
 		System.out.println("-------------------------------------------------");
 		System.out.println("Procesando el NegatedSentenceAnnotator");
 		String docText = jCas.getDocumentText();
-		int posAux = 0;
+
 		StringTokenizer tokenizer = new StringTokenizer(docText,"\t\n\r.<.>/?\";:[{]}\\|=+()!", true);
 		while(tokenizer.hasMoreTokens()) {
 			String token = tokenizer.nextToken();
@@ -42,7 +42,7 @@ public class NegatedSentenceAnnotator extends JCasAnnotator_ImplBase {
 		}
 		
 		//Obtenemos los índices de las anotaciones producidas por el "NoDetectorAnnotator"
-		FSIndex noIndex = jCas.getAnnotationIndex(NoDetector.type);
+		FSIndex<NoDetector> noIndex = jCas.getAnnotationIndex(NoDetector.type);
 		if(noIndex.size()>0) {
 			System.out.println("#######################");
 			System.out.println("Hay cosas");

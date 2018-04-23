@@ -78,6 +78,7 @@ Sin resultados de
 Sin resultados que indiquen
 Sin signos
 Sin signos de
+Sin
 Suficiente para descartar
 Suspendiendo
 Tampoco
@@ -161,6 +162,7 @@ sin resultados de
 sin resultados que indiquen
 sin signos
 sin signos de
+sin
 suficiente para descartar
 suspendiendo
 tampoco

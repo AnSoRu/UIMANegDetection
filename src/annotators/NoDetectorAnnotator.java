@@ -165,6 +165,7 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 						annotation.setBegin(inicio);
 						annotation.setEnd(fin);
 						annotation.setIdOracion(idOracion);
+						annotation.setOracionString(token);
 
 						System.out.println("Se ha creado una anotación en la oración " + idOracion);
 						System.out.println("La anotacion comienza en " + inicio);
@@ -199,6 +200,10 @@ public class NoDetectorAnnotator extends JCasAnnotator_ImplBase {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Oracion> getOraciones(){
+		return this.oraciones;
 	}
 
 	private static boolean isContained(String source, String subItem) {
