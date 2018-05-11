@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/UIMANegDetection"/>
+<listEntry value="/UIMANegDetection_v1"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
@@ -13,6 +13,6 @@
 </mapAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.apache.uima.tools.docanalyzer.DocumentAnalyzer"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="UIMANegDetection"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="UIMANegDetection_v1"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="&quot;-Djava.util.logging.config.file=${env_var:UIMA_HOME}/config/Logger.properties&quot; -DVNS_HOST=localhost"/>
 </launchConfiguration>

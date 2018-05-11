@@ -166,6 +166,8 @@ public class NegationAnalyzer {
 		return res;
 	}
 
+	//Yo recibo un XMI ya con el POS 
+	//No tengo que hacer el POS
 	public static void main(String [] args) {
 		NegationAnalyzer nA = new NegationAnalyzer();
 		System.out.println(nA.isNegated("VIH",1));
